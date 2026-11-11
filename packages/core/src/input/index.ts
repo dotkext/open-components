@@ -1,0 +1,1 @@
+export { inputClass } from './classes';

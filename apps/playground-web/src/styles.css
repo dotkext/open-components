@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+@import '../../../packages/tokens/src/tokens.css';
+@import '../../../packages/tokens/src/theme.css';
+
+@source '../../../packages/core/src';
+@source '../../../packages/ui-web/src';
+
+html.dark {
+  color-scheme: dark;
+}

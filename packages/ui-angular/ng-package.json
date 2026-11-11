@@ -1,0 +1,8 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "dist",
+  "allowedNonPeerDependencies": ["@open-components/core", "@open-components/utils", "tslib"],
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  }
+}

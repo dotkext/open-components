@@ -1,0 +1,74 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import CodeBlock from '../../components/CodeBlock.astro';
+import FrameworkTabs from '../../components/FrameworkTabs.astro';
+import Showcase from '../../components/Showcase';
+import { components } from '../../lib/site';
+import { snippets } from '../../lib/snippets';
+
+export function getStaticPaths() {
+  return components.map((component) => ({
+    params: { slug: component.slug },
+    props: { component },
+  }));
+}
+
+const { component } = Astro.props;
+const code = snippets[component.slug];
+---
+
+<DocsLayout title={component.title} description={component.description}>
+  <article class="flex flex-col gap-10">
+    <header class="flex flex-col gap-2">
+      <p class="text-muted-foreground text-sm font-medium">{component.category}</p>
+      <h1 class="text-3xl font-bold tracking-tight">{component.title}</h1>
+      <p class="text-muted-foreground">{component.description}</p>
+    </header>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+      <p class="text-muted-foreground text-sm">React implementation, live in the browser.</p>
+      <div
+        class="bg-card text-card-foreground flex min-h-40 items-center justify-center rounded-xl border p-8"
+      >
+        <Showcase client:load name={component.slug} />
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">Web Component preview</h2>
+      <p class="text-muted-foreground text-sm">
+        The same component as a light-DOM custom element, accepting Tailwind utilities on the host.
+      </p>
+      <div
+        class="bg-card text-card-foreground flex min-h-40 items-center justify-center rounded-xl border p-8"
+        set:html={component.webPreview}
+      />
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">Usage</h2>
+      <p class="text-muted-foreground text-sm">
+        The same API — variants, props and slots — across all three frameworks. Angular uses
+        attribute directives on native elements, so you keep native semantics.
+      </p>
+      <FrameworkTabs react={code.react} angular={code.angular} web={code.web} />
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">Install with the registry</h2>
+      <p class="text-muted-foreground text-sm">
+        Prefer owning the source? Add the React component straight into your project with the shadcn
+        CLI.
+      </p>
+      <CodeBlock
+        code={`npx shadcn@latest add @open-components/${component.slug}`}
+        filename="Terminal"
+      />
+      <p class="text-muted-foreground text-sm">
+        The component and its shared variant module are copied into{' '}
+        <code>components/ui/</code>, and the <code>cn()</code> utility is installed if missing.
+      </p>
+    </section>
+  </article>
+</DocsLayout>

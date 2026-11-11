@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": [],
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@open-components/ui-angular": ["../../packages/ui-angular/dist"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}

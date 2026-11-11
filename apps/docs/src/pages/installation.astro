@@ -1,0 +1,117 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import FrameworkTabs from '../components/FrameworkTabs.astro';
+
+const install = {
+  react: 'pnpm add @open-components/ui-react',
+  angular: 'pnpm add @open-components/ui-angular',
+  web: 'pnpm add @open-components/ui-web',
+};
+
+const tailwindCss = `@import 'tailwindcss';
+@import '@open-components/tokens/tokens.css';
+@import '@open-components/tokens/theme.css';
+
+/* Make Tailwind see the component classes (npm installs). */
+@source '../../node_modules/@open-components/core/src';
+@source '../../node_modules/@open-components/ui-react/src';`;
+
+const reactExample = `import { Button } from '@open-components/ui-react/button';
+
+export function App() {
+  return <Button variant="outline">Save changes</Button>;
+}`;
+
+const angularExample = `import { OcButton } from '@open-components/ui-angular';
+
+@Component({
+  standalone: true,
+  imports: [OcButton],
+  template: \`<button ocButton variant="outline">Save changes</button>\`,
+})
+export class AppComponent {}`;
+
+const webExample = `import '@open-components/ui-web';
+
+// Anywhere in your HTML:
+// <oc-button variant="outline">Save changes</oc-button>`;
+---
+
+<DocsLayout
+  title="Installation"
+  description="Install OpenComponents for React, Angular or Web Components."
+>
+  <article class="flex flex-col gap-10">
+    <header class="flex flex-col gap-2">
+      <h1 class="text-3xl font-bold tracking-tight">Installation</h1>
+      <p class="text-muted-foreground">
+        Requires Node.js 22+ and a project using Tailwind CSS v4 (or the shadcn registry for React).
+      </p>
+    </header>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">1. Install the package</h2>
+      <FrameworkTabs react={install.react} angular={install.angular} web={install.web} />
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">2. Set up Tailwind and tokens</h2>
+      <p class="text-muted-foreground text-sm">
+        Add the token imports after Tailwind in your global stylesheet, then add the component
+        sources to Tailwind's scanned files.
+      </p>
+      <CodeBlock filename="globals.css" code={tailwindCss} />
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">3. Use a component</h2>
+      <FrameworkTabs react={reactExample} angular={angularExample} web={webExample} />
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">React: copy the source instead</h2>
+      <p class="text-muted-foreground text-sm">
+        OpenComponents is shadcn-registry compatible. Add the registry once, then install components
+        into your project:
+      </p>
+      <CodeBlock
+        filename="components.json"
+        code={`{
+  "registries": {
+    "@open-components": "https://<docs-host>/r/{name}.json"
+  }
+}`}
+      />
+      <CodeBlock
+        filename="Terminal"
+        code={`npx shadcn@latest add @open-components/button
+npx shadcn@latest add @open-components/card`}
+      />
+      <p class="text-muted-foreground text-sm">
+        The registry declares the <code>cn()</code> utility and the token theme as dependencies, so the
+        copied components keep working in any shadcn project.
+      </p>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">Angular notes</h2>
+      <p class="text-muted-foreground text-sm">
+        Angular components are standalone attribute directives. Add them to the <code>imports</code>
+        array of a standalone component (or your NgModule) and apply them to native elements. They are
+        compatible with zoneless change detection because all inputs are signals.
+      </p>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">Web Components notes</h2>
+      <p class="text-muted-foreground text-sm">
+        Web components render into the light DOM so your existing Tailwind stylesheet applies
+        directly. Importing a subpath (<code>@open-components/ui-web/button</code>) registers only
+        that element; importing the package root registers every element. Interactive elements use
+        ARIA roles on the host — use the React or Angular renderer when you need native form
+        controls.
+      </p>
+    </section>
+  </article>
+</DocsLayout>

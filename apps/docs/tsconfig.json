@@ -1,0 +1,17 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@open-components/core": ["../../packages/core/src/index.ts"],
+      "@open-components/core/*": ["../../packages/core/src/*/index.ts"],
+      "@open-components/ui-react": ["../../packages/ui-react/src/index.ts"],
+      "@open-components/ui-react/*": ["../../packages/ui-react/src/*/index.ts"],
+      "@open-components/ui-web": ["../../packages/ui-web/src/index.ts"],
+      "@open-components/utils": ["../../packages/utils/src/index.ts"]
+    }
+  },
+  "include": [".astro/types.d.ts", "src/**/*"]
+}

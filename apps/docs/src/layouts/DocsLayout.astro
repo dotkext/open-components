@@ -1,0 +1,152 @@
+---
+import '../styles/global.css';
+import { components, gettingStartedLinks, withBase } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const current = Astro.url.pathname;
+const base = import.meta.env.BASE_URL;
+const home = base === '/' ? '/' : base.replace(/\/$/, '');
+
+const isActive = (href: string) => {
+  const target = withBase(href);
+  return current === target || current.startsWith(`${target}/`);
+};
+
+const docTitle = title ? `${title} — OpenComponents` : 'OpenComponents';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{docTitle}</title>
+    <meta
+      name="description"
+      content={description ??
+        'OpenComponents — native Web Components with React and Angular implementations, shadcn-registry compatible.'}
+    />
+    <link rel="icon" href={`${base}favicon.svg`} />
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem('oc-theme');
+        const dark = stored
+          ? stored === 'dark'
+          : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', dark);
+      })();
+    </script>
+  </head>
+  <body class="min-h-dvh bg-background text-foreground antialiased">
+    <header class="sticky top-0 z-30 border-b bg-background/80 backdrop-blur">
+      <div class="mx-auto flex h-14 w-full max-w-6xl items-center justify-between gap-4 px-5">
+        <a href={home} class="flex items-center gap-2 font-semibold tracking-tight">
+          <span
+            class="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-md text-xs font-bold"
+            >OC</span
+          >
+          <span>OpenComponents</span>
+        </a>
+
+        <nav class="flex items-center gap-1 text-sm">
+          <a
+            href={withBase('installation')}
+            class="text-muted-foreground hover:text-foreground hidden px-3 py-1.5 transition-colors sm:block"
+            >Docs</a
+          >
+          <a
+            href={withBase('registry')}
+            class="text-muted-foreground hover:text-foreground hidden px-3 py-1.5 transition-colors sm:block"
+            >Registry</a
+          >
+          <button
+            id="theme-toggle"
+            type="button"
+            class="hover:bg-accent rounded-md border px-3 py-1.5 text-sm transition-colors"
+            aria-label="Toggle dark mode"
+          >
+            Theme
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="mx-auto flex w-full max-w-6xl gap-10 px-5 py-10">
+      <aside class="hidden w-56 shrink-0 lg:block">
+        <nav class="sticky top-24 flex flex-col gap-8">
+          <div class="flex flex-col gap-1">
+            <p
+              class="text-muted-foreground px-3 pb-1 text-xs font-semibold uppercase tracking-wide"
+            >
+              Getting started
+            </p>
+            {
+              gettingStartedLinks.map((link) => (
+                <a
+                  href={withBase(link.href)}
+                  class:list={[
+                    'rounded-md px-3 py-2 text-sm transition-colors',
+                    isActive(link.href)
+                      ? 'bg-accent text-accent-foreground font-medium'
+                      : 'text-muted-foreground hover:bg-accent/60 hover:text-foreground',
+                  ]}
+                >
+                  {link.label}
+                </a>
+              ))
+            }
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <p
+              class="text-muted-foreground px-3 pb-1 text-xs font-semibold uppercase tracking-wide"
+            >
+              Components
+            </p>
+            {
+              components.map((component) => (
+                <a
+                  href={withBase(`components/${component.slug}`)}
+                  class:list={[
+                    'rounded-md px-3 py-2 text-sm transition-colors',
+                    isActive(`components/${component.slug}`)
+                      ? 'bg-accent text-accent-foreground font-medium'
+                      : 'text-muted-foreground hover:bg-accent/60 hover:text-foreground',
+                  ]}
+                >
+                  {component.title}
+                </a>
+              ))
+            }
+          </div>
+        </nav>
+      </aside>
+
+      <main class="min-w-0 flex-1">
+        <slot />
+      </main>
+    </div>
+
+    <footer class="text-muted-foreground border-t py-8 text-center text-sm">
+      <p>
+        Built with Lit, React and Angular · Open source under the MIT license ·
+        <span class="text-foreground font-medium">OpenComponents</span>
+      </p>
+    </footer>
+
+    <script>
+      import '@open-components/ui-web';
+
+      const toggle = document.getElementById('theme-toggle');
+      toggle?.addEventListener('click', () => {
+        const dark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('oc-theme', dark ? 'dark' : 'light');
+      });
+    </script>
+  </body>
+</html>

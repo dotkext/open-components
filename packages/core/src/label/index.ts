@@ -1,0 +1,1 @@
+export { labelClass } from './classes';

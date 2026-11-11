@@ -1,0 +1,119 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import { components, withBase } from '../lib/site';
+
+const features = [
+  {
+    title: 'Native Web Components',
+    description: 'Light-DOM Lit elements that accept Tailwind utilities directly.',
+  },
+  {
+    title: 'React 19',
+    description: 'Function components with typed variants and ref-as-prop.',
+  },
+  {
+    title: 'Angular 20',
+    description: 'Standalone attribute directives on native elements, signal inputs.',
+  },
+  {
+    title: 'shadcn registry',
+    description: 'Copy the React source into your project with the shadcn CLI.',
+  },
+];
+---
+
+<DocsLayout>
+  <div class="flex flex-col gap-16">
+    <section class="flex flex-col items-start gap-5 py-10">
+      <span
+        class="bg-secondary text-secondary-foreground rounded-full border px-3 py-1 text-xs font-medium"
+      >
+        Open source · MIT
+      </span>
+      <h1 class="max-w-2xl text-4xl font-bold tracking-tight sm:text-5xl">
+        One design system. Three native renderers.
+      </h1>
+      <p class="text-muted-foreground max-w-xl text-lg">
+        OpenComponents ships the same components as Web Components, React and Angular — powered by
+        shared CVA variants, Tailwind v4 tokens and a shadcn-compatible registry.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={withBase('components/button')}
+          class="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-9 items-center rounded-md px-4 text-sm font-medium transition-colors"
+        >
+          Browse components
+        </a>
+        <a
+          href={withBase('installation')}
+          class="hover:bg-accent inline-flex h-9 items-center rounded-md border px-4 text-sm font-medium transition-colors"
+        >
+          Installation
+        </a>
+      </div>
+    </section>
+
+    <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        features.map((feature) => (
+          <div class="flex flex-col gap-1.5 rounded-xl border p-5">
+            <h2 class="font-semibold tracking-tight">{feature.title}</h2>
+            <p class="text-muted-foreground text-sm">{feature.description}</p>
+          </div>
+        ))
+      }
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight">Quick start</h2>
+          <p class="text-muted-foreground text-sm">Install once, use it from any framework.</p>
+        </div>
+      </div>
+      <div class="grid gap-4 lg:grid-cols-3">
+        <div class="flex flex-col gap-2">
+          <p class="text-sm font-medium">React</p>
+          <CodeBlock code={`pnpm add @open-components/ui-react`} filename="Terminal" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-sm font-medium">Angular</p>
+          <CodeBlock code={`pnpm add @open-components/ui-angular`} filename="Terminal" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-sm font-medium">Web Components</p>
+          <CodeBlock code={`pnpm add @open-components/ui-web`} filename="Terminal" />
+        </div>
+      </div>
+      <CodeBlock
+        filename="globals.css"
+        code={`@import 'tailwindcss';
+@import '@open-components/tokens/tokens.css';
+@import '@open-components/tokens/theme.css';`}
+      />
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight">Components</h2>
+        <p class="text-muted-foreground text-sm">
+          Every component is implemented three times against one shared definition.
+        </p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          components.map((component) => (
+            <a
+              href={withBase(`components/${component.slug}`)}
+              class="hover:border-ring flex flex-col gap-1.5 rounded-xl border p-5 transition-colors"
+            >
+              <h3 class="font-semibold tracking-tight">{component.title}</h3>
+              <p class="text-muted-foreground text-sm">{component.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</DocsLayout>

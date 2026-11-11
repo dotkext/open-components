@@ -1,0 +1,35 @@
+{
+  "name": "@open-components/ui-angular",
+  "version": "0.1.0",
+  "description": "OpenComponents Angular directives — idiomatic attribute directives on native elements.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "ng-packagr -p ng-package.json",
+    "dev": "ng-packagr -p ng-package.json --watch",
+    "typecheck": "tsc -p tsconfig.lib.json --noEmit",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\""
+  },
+  "dependencies": {
+    "@open-components/core": "workspace:*",
+    "@open-components/utils": "workspace:*",
+    "tslib": "catalog:"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=20.0.0"
+  },
+  "devDependencies": {
+    "@angular/compiler": "catalog:",
+    "@angular/compiler-cli": "catalog:",
+    "@angular/core": "catalog:",
+    "ng-packagr": "catalog:",
+    "typescript": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

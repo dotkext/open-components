@@ -1,0 +1,120 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+
+const tokens = `:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --border: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  /* …card, popover, secondary, muted, accent, destructive, charts */
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+}`;
+
+const theme = `@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+}`;
+
+const variants = `import { cva } from 'class-variance-authority';
+
+export const buttonVariants = cva(
+  'inline-flex items-center justify-center rounded-md text-sm font-medium',
+  {
+    variants: {
+      variant: {
+        default: 'bg-primary text-primary-foreground shadow-xs',
+        outline: 'border bg-background shadow-xs',
+        ghost: 'hover:bg-accent hover:text-accent-foreground',
+      },
+      size: {
+        default: 'h-9 px-4 py-2',
+        sm: 'h-8 px-3',
+        icon: 'size-9',
+      },
+    },
+    defaultVariants: { variant: 'default', size: 'default' },
+  },
+);`;
+
+const override = `import { Button } from '@open-components/ui-react/button';
+
+// tailwind-merge resolves conflicts in favour of your classes.
+<Button className="bg-red-500 hover:bg-red-600">Delete</Button>;`;
+---
+
+<DocsLayout
+  title="Theming"
+  description="Design tokens, dark mode and CVA variants shared across all renderers."
+>
+  <article class="flex flex-col gap-10">
+    <header class="flex flex-col gap-2">
+      <h1 class="text-3xl font-bold tracking-tight">Theming</h1>
+      <p class="text-muted-foreground">
+        Every renderer consumes the same shadcn-compatible tokens. Change a variable once and the
+        React, Angular and Web Component implementations update together.
+      </p>
+    </header>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">Design tokens</h2>
+      <p class="text-muted-foreground text-sm">
+        Tokens live in <code>@open-components/tokens</code> as plain CSS variables in OKLCH, with a
+        <code>.dark</code> block. They are mapped to Tailwind utilities via
+        <code>@theme inline</code>, so <code>bg-primary</code>, <code>text-muted-foreground</code>{
+          ' '
+        }
+        and friends resolve to the variables.
+      </p>
+      <CodeBlock filename="tokens.css" code={tokens} />
+      <CodeBlock filename="theme.css" code={theme} />
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">Dark mode</h2>
+      <p class="text-muted-foreground text-sm">
+        Add the <code>dark</code> class to the <code>&lt;html&gt;</code> element. Because colors come
+        from CSS variables, components never need to know about the theme — even inside the light-DOM
+        web components.
+      </p>
+      <CodeBlock
+        filename="theme-toggle.ts"
+        code={`document.documentElement.classList.toggle('dark');`}
+      />
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">Variants with CVA</h2>
+      <p class="text-muted-foreground text-sm">
+        Variant definitions are the single source of truth and live in{' '}
+        <code>@open-components/core</code>. React, Angular and Web Components all import the same
+        <code>cva()</code> result, so the class lists can never drift apart.
+      </p>
+      <CodeBlock filename="core/src/button/variants.ts" code={variants} />
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">Overriding styles</h2>
+      <p class="text-muted-foreground text-sm">
+        Pass <code>className</code> (React), <code>class</code> (Angular, Web Components) or a{' '}
+        <code>className</code> prop and <code>cn()</code> merges it with tailwind-merge.
+      </p>
+      <CodeBlock filename="example.tsx" code={override} />
+    </section>
+  </article>
+</DocsLayout>

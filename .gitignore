@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Builds
+dist/
+build/
+out/
+.output/
+.astro/
+.angular/
+.vite/
+.next/
+*.tgz
+
+# Turbo
+.turbo/
+
+# Tests / coverage
+coverage/
+playwright-report/
+test-results/
+blob-report/
+*.lcov
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Generated registry output
+packages/registry/dist/
+
+# Astro public assets generated at build time
+apps/docs/public/registry.json
+apps/docs/public/r/

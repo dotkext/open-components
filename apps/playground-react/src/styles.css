@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+@import '../../../packages/tokens/src/tokens.css';
+@import '../../../packages/tokens/src/theme.css';
+
+@source '../../../packages/core/src';
+@source '../../../packages/ui-react/src';
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}

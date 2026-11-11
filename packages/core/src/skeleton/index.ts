@@ -1,0 +1,1 @@
+export { skeletonClass } from './classes';

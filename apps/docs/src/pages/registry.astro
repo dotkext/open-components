@@ -1,0 +1,86 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+
+const config = `{
+  "registries": {
+    "@open-components": "https://<docs-host>/r/{name}.json"
+  }
+}`;
+
+const command = `npx shadcn@latest add @open-components/button`;
+
+const item = `{
+  "name": "button",
+  "type": "registry:ui",
+  "dependencies": ["class-variance-authority"],
+  "registryDependencies": ["utils"],
+  "files": [
+    {
+      "path": "components/ui/button.tsx",
+      "type": "registry:ui",
+      "content": "…"
+    },
+    {
+      "path": "components/ui/button-variants.ts",
+      "type": "registry:lib",
+      "content": "…"
+    }
+  ]
+}`;
+
+const output = `packages/registry/dist
+├── registry.json      # index consumed by the CLI
+└── r
+    ├── button.json    # full item, files inlined
+    ├── card.json
+    ├── theme.json     # cssVars generated from @open-components/tokens
+    └── utils.json     # cn() helper`;
+
+const build = `pnpm --filter @open-components/registry build
+# or serve it straight from the docs site:
+node packages/registry/scripts/build.mjs --out apps/docs/public`;
+---
+
+<DocsLayout
+  title="Registry"
+  description="shadcn-compatible registry generated from the React sources."
+>
+  <article class="flex flex-col gap-10">
+    <header class="flex flex-col gap-2">
+      <h1 class="text-3xl font-bold tracking-tight">Registry</h1>
+      <p class="text-muted-foreground">
+        OpenComponents publishes a shadcn registry. The CLI copies the React component source — plus
+        the shared variant module — into your project, so you own the code.
+      </p>
+    </header>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">Install a component</h2>
+      <CodeBlock filename="components.json" code={config} />
+      <CodeBlock filename="Terminal" code={command} />
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">What an item looks like</h2>
+      <p class="text-muted-foreground text-sm">
+        Component sources import the shared variants from a local module after generation, and the
+        <code>cn()</code> utility comes from your project's <code>@/lib/utils</code>. The builder
+        rewrites all workspace imports and inlines both files.
+      </p>
+      <CodeBlock filename="r/button.json (abridged)" code={item} />
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl font-semibold tracking-tight">Generated output</h2>
+      <CodeBlock filename="registry output" code={output} />
+      <CodeBlock filename="Terminal" code={build} />
+      <p class="text-muted-foreground text-sm">
+        The docs site copies the generated registry into its <code>public/</code> folder on every build,
+        so <code>/registry.json</code> and <code>/r/&lt;item&gt;.json</code> are always in sync with the
+        components. Validation runs automatically and fails the build on broken dependencies or leftover
+        workspace imports.
+      </p>
+    </section>
+  </article>
+</DocsLayout>

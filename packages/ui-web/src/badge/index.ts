@@ -1,0 +1,1 @@
+export { OcBadge } from './badge';

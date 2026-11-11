@@ -1,0 +1,11 @@
+node_modules
+dist
+coverage
+.turbo
+.astro
+.angular
+public
+pnpm-lock.yaml
+packages/registry/dist
+apps/docs/public/registry.json
+apps/docs/public/r

@@ -1,0 +1,30 @@
+{
+  "name": "@open-components/docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node ../../packages/registry/scripts/build.mjs public && astro dev",
+    "build": "node ../../packages/registry/scripts/build.mjs public && astro build",
+    "preview": "astro preview",
+    "registry": "node ../../packages/registry/scripts/build.mjs public"
+  },
+  "dependencies": {
+    "@astrojs/react": "catalog:",
+    "@open-components/core": "workspace:*",
+    "@open-components/tokens": "workspace:*",
+    "@open-components/ui-react": "workspace:*",
+    "@open-components/ui-web": "workspace:*",
+    "@open-components/utils": "workspace:*",
+    "astro": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:"
+  }
+}

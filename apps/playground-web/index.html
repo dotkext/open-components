@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenComponents — Web Components playground</title>
+  </head>
+  <body>
+    <main class="mx-auto flex max-w-4xl flex-col gap-10 px-6 py-12">
+      <header class="flex items-center justify-between gap-4">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">OpenComponents — Web Components</h1>
+          <p class="text-muted-foreground text-sm">
+            Rendered from <code>&lt;oc-*&gt;</code> custom elements.
+          </p>
+        </div>
+        <button id="theme" type="button" class="rounded-md border px-3 py-1.5 text-sm">
+          Dark mode
+        </button>
+      </header>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Button</h2>
+        <div class="flex flex-wrap items-center gap-3 rounded-xl border p-6">
+          <oc-button>Default</oc-button>
+          <oc-button variant="secondary">Secondary</oc-button>
+          <oc-button variant="destructive">Destructive</oc-button>
+          <oc-button variant="outline">Outline</oc-button>
+          <oc-button variant="ghost">Ghost</oc-button>
+          <oc-button variant="link">Link</oc-button>
+          <oc-button size="sm">Small</oc-button>
+          <oc-button size="lg">Large</oc-button>
+          <oc-button class="bg-red-500 hover:bg-red-600">Overridden</oc-button>
+          <oc-button disabled>Disabled</oc-button>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Badge</h2>
+        <div class="flex flex-wrap items-center gap-3 rounded-xl border p-6">
+          <oc-badge>Default</oc-badge>
+          <oc-badge variant="secondary">Secondary</oc-badge>
+          <oc-badge variant="destructive">Destructive</oc-badge>
+          <oc-badge variant="outline">Outline</oc-badge>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Card</h2>
+        <oc-card class="max-w-md">
+          <oc-card-header>
+            <oc-card-title>Create project</oc-card-title>
+            <oc-card-description>Deploy your new project in one click.</oc-card-description>
+          </oc-card-header>
+          <oc-card-content class="flex flex-col gap-4">
+            <div class="grid gap-2">
+              <oc-label for="wc-name">Name</oc-label>
+              <oc-input id="wc-name" placeholder="My project"></oc-input>
+            </div>
+            <oc-separator></oc-separator>
+            <oc-skeleton class="h-4 w-3/4"></oc-skeleton>
+            <oc-skeleton class="h-4 w-1/2"></oc-skeleton>
+          </oc-card-content>
+          <oc-card-footer>
+            <oc-button>Create</oc-button>
+          </oc-card-footer>
+        </oc-card>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Alert</h2>
+        <oc-alert variant="destructive">
+          <oc-alert-title>Heads up!</oc-alert-title>
+          <oc-alert-description>
+            You can add components from the registry with the CLI.
+          </oc-alert-description>
+        </oc-alert>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

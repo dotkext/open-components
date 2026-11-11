@@ -1,0 +1,12 @@
+{
+  "name": "@open-components/registry",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Builds the shadcn-compatible OpenComponents registry JSON.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "validate:shadcn": "node scripts/validate-with-shadcn.mjs",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\""
+  }
+}
