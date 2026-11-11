@@ -76,6 +76,110 @@
           </oc-alert-description>
         </oc-alert>
       </section>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Switch</h2>
+        <div class="flex flex-wrap items-center gap-6 rounded-xl border p-6">
+          <oc-switch checked aria-label="Checked"></oc-switch>
+          <oc-switch aria-label="Unchecked"></oc-switch>
+          <oc-switch checked size="sm" aria-label="Small"></oc-switch>
+          <oc-switch disabled aria-label="Disabled"></oc-switch>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Progress</h2>
+        <div class="flex w-full max-w-sm flex-col gap-4 rounded-xl border p-6">
+          <oc-progress value="20" aria-label="20% complete"></oc-progress>
+          <oc-progress value="55" aria-label="55% complete"></oc-progress>
+          <oc-progress value="80" class="h-3" aria-label="80% complete"></oc-progress>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Icon Button</h2>
+        <div class="flex flex-wrap items-center gap-2 rounded-xl border p-6">
+          <oc-icon-button aria-label="Close">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-linecap="round" />
+            </svg>
+          </oc-icon-button>
+          <oc-icon-button variant="outline" aria-label="Settings">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 5h10M3 11h10" stroke="currentColor" stroke-linecap="round" />
+              <circle cx="6" cy="5" r="2" fill="currentColor" />
+              <circle cx="10" cy="11" r="2" fill="currentColor" />
+            </svg>
+          </oc-icon-button>
+          <oc-icon-button variant="solid" aria-label="Add">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-linecap="round" />
+            </svg>
+          </oc-icon-button>
+          <oc-icon-button variant="destructive" aria-label="Delete">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M3 4h10M6 4V3h4v1M5 4l.5 9h5L11 4"
+                stroke="currentColor"
+                stroke-linecap="round"
+              />
+            </svg>
+          </oc-icon-button>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Kbd & Text Link</h2>
+        <div class="flex flex-col gap-4 rounded-xl border p-6 text-sm">
+          <p class="flex flex-wrap items-center gap-2">
+            Press <oc-kbd>Ctrl</oc-kbd> + <oc-kbd>K</oc-kbd> to open the command menu.
+          </p>
+          <p>
+            Read the <oc-link href="#">documentation</oc-link> or
+            <oc-link href="#" variant="muted">view the changelog</oc-link>.
+          </p>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Sheet</h2>
+        <div class="flex items-center gap-3 rounded-xl border p-6">
+          <button
+            type="button"
+            class="bg-primary text-primary-foreground inline-flex h-9 items-center rounded-md px-4 text-sm font-medium"
+            onclick="document.getElementById('demo-sheet').open = true"
+          >
+            Open settings
+          </button>
+        </div>
+        <oc-sheet id="demo-sheet" aria-label="Settings">
+          <oc-sheet-header>
+            <oc-sheet-title>Settings</oc-sheet-title>
+            <oc-sheet-description>Manage your workspace preferences.</oc-sheet-description>
+          </oc-sheet-header>
+          <div class="flex flex-col gap-5 text-sm">
+            <div class="flex items-center justify-between gap-4">
+              <span>Email notifications</span>
+              <oc-switch checked aria-label="Email notifications"></oc-switch>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <span>Usage alerts</span>
+              <oc-switch aria-label="Usage alerts"></oc-switch>
+            </div>
+            <div class="grid gap-2">
+              <span class="text-muted-foreground">Setup progress</span>
+              <oc-progress value="65" aria-label="Setup progress"></oc-progress>
+            </div>
+          </div>
+          <oc-sheet-footer>
+            <oc-sheet-close
+              class="inline-flex h-9 items-center justify-center rounded-md border px-4 text-sm font-medium"
+            >
+              Done
+            </oc-sheet-close>
+          </oc-sheet-footer>
+        </oc-sheet>
+      </section>
     </main>
 
     <script type="module" src="/src/main.ts"></script>

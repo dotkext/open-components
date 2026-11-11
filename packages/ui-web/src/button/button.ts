@@ -1,6 +1,6 @@
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 import { buttonVariants, type ButtonSize, type ButtonVariant } from '@open-components/core/button';
-import { OcElement } from '../base';
+import { OcActionElement } from '../interactive';
 
 /**
  * `<oc-button>` — light-DOM custom element styled with the shared CVA variants.
@@ -9,7 +9,7 @@ import { OcElement } from '../base';
  * directly. Native form submission is not supported; prefer the React or
  * Angular renderers when you need a real `<button>`.
  */
-export class OcButton extends OcElement {
+export class OcButton extends OcActionElement {
   static properties = {
     variant: { type: String, reflect: true },
     size: { type: String, reflect: true },
@@ -27,47 +27,10 @@ export class OcButton extends OcElement {
   override connectedCallback(): void {
     super.connectedCallback();
     this.setAttribute('data-slot', 'button');
-    this.setAttribute('role', 'button');
-    if (!this.hasAttribute('tabindex')) {
-      this.setAttribute('tabindex', this.disabled ? '-1' : '0');
-    }
-    this.addEventListener('keydown', this.onKeydown);
-    this.addEventListener('click', this.onClick, true);
-    this.updateAccessibility();
   }
-
-  override disconnectedCallback(): void {
-    this.removeEventListener('keydown', this.onKeydown);
-    this.removeEventListener('click', this.onClick, true);
-    super.disconnectedCallback();
-  }
-
-  protected override updated(): void {
-    super.updated();
-    this.updateAccessibility();
-  }
-
-  private updateAccessibility(): void {
-    this.setAttribute('aria-disabled', String(this.disabled));
-    this.setAttribute('tabindex', this.disabled ? '-1' : '0');
-  }
-
-  private readonly onClick = (event: MouseEvent): void => {
-    if (!this.disabled) return;
-    event.preventDefault();
-    event.stopImmediatePropagation();
-  };
-
-  private readonly onKeydown = (event: KeyboardEvent): void => {
-    if (this.disabled) return;
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      this.click();
-    }
-  };
 
   protected override render() {
-    return html`${nothing}`;
+    return html``;
   }
 }
 

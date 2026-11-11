@@ -17,6 +17,10 @@ export default defineConfig({
     resolve: {
       alias: [
         {
+          find: '@open-components/core/sheet/behavior',
+          replacement: r('../../packages/core/src/sheet/behavior.ts'),
+        },
+        {
           find: /^@open-components\/core\/(.*)$/,
           replacement: r('../../packages/core/src/$1/index.ts'),
         },

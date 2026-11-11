@@ -28,6 +28,14 @@ export const components = [
     dependencies: [],
   },
   {
+    name: 'icon-button',
+    title: 'Icon Button',
+    description: 'A button that contains only an icon.',
+    react: 'ui-react/src/icon-button/icon-button.tsx',
+    variants: 'core/src/icon-button/variants.ts',
+    dependencies: ['class-variance-authority'],
+  },
+  {
     name: 'input',
     title: 'Input',
     description: 'Displays a form input field.',
@@ -36,11 +44,27 @@ export const components = [
     dependencies: [],
   },
   {
+    name: 'kbd',
+    title: 'Kbd',
+    description: 'Displays a keyboard keycap.',
+    react: 'ui-react/src/kbd/kbd.tsx',
+    variants: 'core/src/kbd/classes.ts',
+    dependencies: [],
+  },
+  {
     name: 'label',
     title: 'Label',
     description: 'Renders an accessible label associated with controls.',
     react: 'ui-react/src/label/label.tsx',
     variants: 'core/src/label/classes.ts',
+    dependencies: [],
+  },
+  {
+    name: 'progress',
+    title: 'Progress',
+    description: 'Displays an indicator showing the completion progress of a task.',
+    react: 'ui-react/src/progress/progress.tsx',
+    variants: 'core/src/progress/classes.ts',
     dependencies: [],
   },
   {
@@ -60,12 +84,44 @@ export const components = [
     dependencies: ['class-variance-authority'],
   },
   {
+    name: 'sheet',
+    title: 'Sheet',
+    description: 'A modal panel that slides in from an edge of the screen.',
+    react: 'ui-react/src/sheet/sheet.tsx',
+    variants: 'core/src/sheet/classes.ts',
+    dependencies: ['class-variance-authority'],
+    extraFiles: [
+      {
+        specifier: '@open-components/core/sheet/behavior',
+        source: 'core/src/sheet/behavior.ts',
+        target: 'components/ui/sheet-behavior.ts',
+        importPath: './sheet-behavior',
+      },
+    ],
+  },
+  {
     name: 'skeleton',
     title: 'Skeleton',
     description: 'Use to show a placeholder while content is loading.',
     react: 'ui-react/src/skeleton/skeleton.tsx',
     variants: 'core/src/skeleton/classes.ts',
     dependencies: [],
+  },
+  {
+    name: 'switch',
+    title: 'Switch',
+    description: 'A control that toggles between on and off states.',
+    react: 'ui-react/src/switch/switch.tsx',
+    variants: 'core/src/switch/variants.ts',
+    dependencies: ['class-variance-authority'],
+  },
+  {
+    name: 'text-link',
+    title: 'Text Link',
+    description: 'An inline link for navigation or secondary actions.',
+    react: 'ui-react/src/text-link/text-link.tsx',
+    variants: 'core/src/text-link/variants.ts',
+    dependencies: ['class-variance-authority'],
   },
 ];
 

@@ -46,6 +46,22 @@ async function buildItem(component) {
     'utf8',
   );
 
+  let reactContent = reactSource;
+  const extraFiles = [];
+
+  for (const extra of component.extraFiles ?? []) {
+    const source = await readFile(join(workspaceRoot, 'packages', extra.source), 'utf8');
+    reactContent = reactContent
+      .replaceAll(`'${extra.specifier}'`, `'${extra.importPath}'`)
+      .replaceAll(`"${extra.specifier}"`, `"${extra.importPath}"`);
+    extraFiles.push({
+      path: extra.target,
+      type: 'registry:lib',
+      target: extra.target,
+      content: rewriteImports(source, component.name),
+    });
+  }
+
   return {
     name: component.name,
     type: 'registry:ui',
@@ -58,7 +74,7 @@ async function buildItem(component) {
         path: `components/ui/${component.name}.tsx`,
         type: 'registry:ui',
         target: `components/ui/${component.name}.tsx`,
-        content: rewriteImports(reactSource, component.name),
+        content: rewriteImports(reactContent, component.name),
       },
       {
         path: `components/ui/${component.name}-variants.ts`,
@@ -66,6 +82,7 @@ async function buildItem(component) {
         target: `components/ui/${component.name}-variants.ts`,
         content: rewriteImports(variantsSource, component.name),
       },
+      ...extraFiles,
     ],
   };
 }

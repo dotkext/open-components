@@ -1,0 +1,1 @@
+export { kbdClass } from './classes';

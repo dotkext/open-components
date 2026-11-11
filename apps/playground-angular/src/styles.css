@@ -8,3 +8,7 @@
 html.dark {
   color-scheme: dark;
 }
+
+oc-sheet:not(:defined) {
+  display: none;
+}

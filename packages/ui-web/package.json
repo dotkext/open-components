@@ -29,21 +29,45 @@
       "types": "./dist/card/index.d.ts",
       "import": "./dist/card/index.js"
     },
+    "./icon-button": {
+      "types": "./dist/icon-button/index.d.ts",
+      "import": "./dist/icon-button/index.js"
+    },
     "./input": {
       "types": "./dist/input/index.d.ts",
       "import": "./dist/input/index.js"
+    },
+    "./kbd": {
+      "types": "./dist/kbd/index.d.ts",
+      "import": "./dist/kbd/index.js"
     },
     "./label": {
       "types": "./dist/label/index.d.ts",
       "import": "./dist/label/index.js"
     },
+    "./progress": {
+      "types": "./dist/progress/index.d.ts",
+      "import": "./dist/progress/index.js"
+    },
     "./separator": {
       "types": "./dist/separator/index.d.ts",
       "import": "./dist/separator/index.js"
     },
+    "./sheet": {
+      "types": "./dist/sheet/index.d.ts",
+      "import": "./dist/sheet/index.js"
+    },
     "./skeleton": {
       "types": "./dist/skeleton/index.d.ts",
       "import": "./dist/skeleton/index.js"
+    },
+    "./switch": {
+      "types": "./dist/switch/index.d.ts",
+      "import": "./dist/switch/index.js"
+    },
+    "./text-link": {
+      "types": "./dist/text-link/index.d.ts",
+      "import": "./dist/text-link/index.js"
     },
     "./package.json": "./package.json"
   },

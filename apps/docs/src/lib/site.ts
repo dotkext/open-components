@@ -140,6 +140,130 @@ export const components: ComponentDoc[] = [
       </div>
     `,
   },
+  {
+    slug: 'sheet',
+    title: 'Sheet',
+    description: 'A modal panel that slides in from an edge of the screen.',
+    category: 'Layout',
+    webPreview: `
+      <div class="flex flex-col items-center gap-3">
+        <button
+          type="button"
+          class="bg-primary text-primary-foreground inline-flex h-9 items-center rounded-md px-4 text-sm font-medium"
+          onclick="document.getElementById('oc-demo-sheet').open = true"
+        >
+          Open sheet
+        </button>
+        <p class="text-muted-foreground text-sm">Press Escape or click the backdrop to close.</p>
+      </div>
+      <oc-sheet id="oc-demo-sheet" aria-label="Settings">
+        <oc-sheet-header>
+          <oc-sheet-title>Settings</oc-sheet-title>
+          <oc-sheet-description>Manage your workspace preferences.</oc-sheet-description>
+        </oc-sheet-header>
+        <div class="flex flex-col gap-4 text-sm">
+          <div class="flex items-center justify-between gap-4">
+            <span>Email notifications</span>
+            <oc-switch checked aria-label="Email notifications"></oc-switch>
+          </div>
+          <div class="flex items-center justify-between gap-4">
+            <span>Usage alerts</span>
+            <oc-switch aria-label="Usage alerts"></oc-switch>
+          </div>
+          <oc-progress value="65" aria-label="Setup progress"></oc-progress>
+        </div>
+        <oc-sheet-footer>
+          <oc-sheet-close
+            class="inline-flex h-9 items-center justify-center rounded-md border px-4 text-sm font-medium"
+          >
+            Close
+          </oc-sheet-close>
+        </oc-sheet-footer>
+      </oc-sheet>
+    `,
+  },
+  {
+    slug: 'switch',
+    title: 'Switch',
+    description: 'A control that toggles between on and off states.',
+    category: 'Forms',
+    webPreview: `
+      <div class="flex flex-wrap items-center gap-6">
+        <oc-switch checked aria-label="Checked"></oc-switch>
+        <oc-switch aria-label="Unchecked"></oc-switch>
+        <oc-switch checked size="sm" aria-label="Small"></oc-switch>
+        <oc-switch disabled aria-label="Disabled"></oc-switch>
+      </div>
+    `,
+  },
+  {
+    slug: 'progress',
+    title: 'Progress',
+    description: 'Displays an indicator showing the completion progress of a task.',
+    category: 'Feedback',
+    webPreview: `
+      <div class="flex w-full max-w-sm flex-col gap-4">
+        <oc-progress value="20" aria-label="20% complete"></oc-progress>
+        <oc-progress value="55" aria-label="55% complete"></oc-progress>
+        <oc-progress value="80" class="h-3" aria-label="80% complete"></oc-progress>
+      </div>
+    `,
+  },
+  {
+    slug: 'icon-button',
+    title: 'Icon Button',
+    description: 'A button that contains only an icon.',
+    category: 'Forms',
+    webPreview: `
+      <div class="flex items-center gap-2">
+        <oc-icon-button aria-label="Close">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-linecap="round"/></svg>
+        </oc-icon-button>
+        <oc-icon-button variant="outline" aria-label="Settings">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 5h10M3 11h10" stroke="currentColor" stroke-linecap="round"/><circle cx="6" cy="5" r="2" fill="currentColor"/><circle cx="10" cy="11" r="2" fill="currentColor"/></svg>
+        </oc-icon-button>
+        <oc-icon-button variant="solid" aria-label="Add">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-linecap="round"/></svg>
+        </oc-icon-button>
+        <oc-icon-button variant="destructive" aria-label="Delete">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 4h10M6 4V3h4v1M5 4l.5 9h5L11 4" stroke="currentColor" stroke-linecap="round"/></svg>
+        </oc-icon-button>
+      </div>
+    `,
+  },
+  {
+    slug: 'kbd',
+    title: 'Kbd',
+    description: 'Displays a keyboard keycap.',
+    category: 'Display',
+    webPreview: `
+      <div class="flex flex-col items-center gap-4 text-sm">
+        <div class="flex flex-wrap items-center gap-2">
+          <span>Press</span>
+          <oc-kbd>Ctrl</oc-kbd>
+          <span>+</span>
+          <oc-kbd>K</oc-kbd>
+          <span>to open the command menu.</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <oc-kbd>Shift</oc-kbd>
+          <oc-kbd>Enter</oc-kbd>
+        </div>
+      </div>
+    `,
+  },
+  {
+    slug: 'text-link',
+    title: 'Text Link',
+    description: 'An inline link for navigation or secondary actions.',
+    category: 'Display',
+    webPreview: `
+      <p class="text-sm">
+        Read the <oc-link href="https://example.com">documentation</oc-link> or
+        <oc-link href="#" variant="muted">view the changelog</oc-link>.
+      </p>
+    `,
+  },
 ];
 
 export const componentBySlug = Object.fromEntries(

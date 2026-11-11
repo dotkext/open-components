@@ -3,10 +3,16 @@ import { alertVariants, alertDescriptionClass } from './alert/index';
 import { badgeVariants } from './badge/index';
 import { buttonVariants } from './button/index';
 import { cardClass } from './card/index';
+import { iconButtonVariants } from './icon-button/index';
 import { inputClass } from './input/index';
+import { kbdClass } from './kbd/index';
 import { labelClass } from './label/index';
+import { progressClass } from './progress/index';
 import { separatorVariants } from './separator/index';
+import { sheetContentVariants } from './sheet/index';
 import { skeletonClass } from './skeleton/index';
+import { switchVariants } from './switch/index';
+import { textLinkVariants } from './text-link/index';
 
 describe('buttonVariants', () => {
   it('applies the default variant and size', () => {
@@ -58,5 +64,27 @@ describe('static class definitions', () => {
   it('exposes separator orientations', () => {
     expect(separatorVariants()).toContain('h-px');
     expect(separatorVariants({ orientation: 'vertical' })).toContain('w-px');
+  });
+});
+
+describe('new primitives', () => {
+  it('switch variants expose sizes and state hooks', () => {
+    expect(switchVariants()).toContain('data-[state=checked]:bg-primary');
+    expect(switchVariants({ size: 'sm' })).toContain('h-4');
+  });
+
+  it('progress exposes track classes', () => {
+    expect(progressClass).toContain('bg-input');
+  });
+
+  it('icon button exposes variants and sizes', () => {
+    expect(iconButtonVariants()).toContain('hover:bg-accent');
+    expect(iconButtonVariants({ variant: 'solid', size: 'lg' })).toContain('size-10');
+  });
+
+  it('kbd, text link and sheet classes are defined', () => {
+    expect(kbdClass).toContain('font-mono');
+    expect(textLinkVariants({ variant: 'muted' })).toContain('text-muted-foreground');
+    expect(sheetContentVariants({ side: 'left' })).toContain('border-r');
   });
 });

@@ -4,6 +4,7 @@
 
 @source '../../../packages/core/src';
 @source '../../../packages/ui-react/src';
+@source '../../../packages/ui-web/src';
 
 html {
   color-scheme: light;
@@ -11,4 +12,8 @@ html {
 
 html.dark {
   color-scheme: dark;
+}
+
+oc-sheet:not(:defined) {
+  display: none;
 }

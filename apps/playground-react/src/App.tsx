@@ -11,10 +11,21 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  IconButton,
   Input,
+  Kbd,
   Label,
+  Progress,
   Separator,
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
   Skeleton,
+  Switch,
+  TextLink,
 } from '@open-components/ui-react';
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -28,6 +39,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 export default function App() {
   const [dark, setDark] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
 
   const toggleDark = () => {
     const next = !dark;
@@ -91,6 +103,97 @@ export default function App() {
         <AlertTitle>Heads up!</AlertTitle>
         <AlertDescription>You can add components from the registry with the CLI.</AlertDescription>
       </Alert>
+
+      <Section title="Switch">
+        <Switch defaultChecked aria-label="Checked" />
+        <Switch aria-label="Unchecked" />
+        <Switch size="sm" defaultChecked aria-label="Small" />
+        <Switch disabled aria-label="Disabled" />
+      </Section>
+
+      <Section title="Progress">
+        <div className="flex w-full max-w-sm flex-col gap-3">
+          <Progress value={20} aria-label="20% complete" />
+          <Progress value={55} aria-label="55% complete" />
+          <Progress value={80} className="h-3" aria-label="80% complete" />
+        </div>
+      </Section>
+
+      <Section title="Icon Button">
+        <IconButton aria-label="Close">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeLinecap="round" />
+          </svg>
+        </IconButton>
+        <IconButton variant="outline" aria-label="Settings">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 5h10M3 11h10" stroke="currentColor" strokeLinecap="round" />
+            <circle cx="6" cy="5" r="2" fill="currentColor" />
+            <circle cx="10" cy="11" r="2" fill="currentColor" />
+          </svg>
+        </IconButton>
+        <IconButton variant="solid" aria-label="Add">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 3v10M3 8h10" stroke="currentColor" strokeLinecap="round" />
+          </svg>
+        </IconButton>
+        <IconButton variant="destructive" aria-label="Delete">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M3 4h10M6 4V3h4v1M5 4l.5 9h5L11 4"
+              stroke="currentColor"
+              strokeLinecap="round"
+            />
+          </svg>
+        </IconButton>
+      </Section>
+
+      <Section title="Kbd">
+        <p className="flex items-center gap-2 text-sm">
+          Press <Kbd>Ctrl</Kbd> + <Kbd>K</Kbd> to open the command menu.
+        </p>
+      </Section>
+
+      <Section title="Text Link">
+        <p className="text-sm">
+          Read the <TextLink href="#">documentation</TextLink> or{' '}
+          <TextLink href="#" variant="muted">
+            view the changelog
+          </TextLink>
+          .
+        </p>
+      </Section>
+
+      <Section title="Sheet">
+        <Button onClick={() => setSheetOpen(true)}>Open settings</Button>
+        <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Settings</SheetTitle>
+              <SheetDescription>Manage your workspace preferences.</SheetDescription>
+            </SheetHeader>
+            <div className="flex flex-col gap-5 text-sm">
+              <div className="flex items-center justify-between gap-4">
+                <span>Email notifications</span>
+                <Switch defaultChecked aria-label="Email notifications" />
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <span>Usage alerts</span>
+                <Switch aria-label="Usage alerts" />
+              </div>
+              <div className="grid gap-2">
+                <span className="text-muted-foreground">Setup progress</span>
+                <Progress value={65} aria-label="Setup progress" />
+              </div>
+            </div>
+            <SheetFooter>
+              <Button variant="outline" onClick={() => setSheetOpen(false)}>
+                Done
+              </Button>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
+      </Section>
     </main>
   );
 }

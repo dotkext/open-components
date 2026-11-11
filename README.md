@@ -41,16 +41,22 @@ themes identically.
 
 ## Components
 
-| Component | Web Component        | React               | Angular                |
-| --------- | -------------------- | ------------------- | ---------------------- |
-| Button    | `<oc-button>`        | `<Button />`        | `button[ocButton]`     |
-| Badge     | `<oc-badge>`         | `<Badge />`         | `span[ocBadge]`        |
-| Card      | `<oc-card>` + parts  | `<Card />` + parts  | `div[ocCard]` + parts  |
-| Input     | `<oc-input>`         | `<Input />`         | `input[ocInput]`       |
-| Label     | `<oc-label>`         | `<Label />`         | `label[ocLabel]`       |
-| Alert     | `<oc-alert>` + parts | `<Alert />` + parts | `div[ocAlert]` + parts |
-| Separator | `<oc-separator>`     | `<Separator />`     | `div[ocSeparator]`     |
-| Skeleton  | `<oc-skeleton>`      | `<Skeleton />`      | `div[ocSkeleton]`      |
+| Component   | Web Component        | React               | Angular                |
+| ----------- | -------------------- | ------------------- | ---------------------- |
+| Button      | `<oc-button>`        | `<Button />`        | `button[ocButton]`     |
+| Badge       | `<oc-badge>`         | `<Badge />`         | `span[ocBadge]`        |
+| Card        | `<oc-card>` + parts  | `<Card />` + parts  | `div[ocCard]` + parts  |
+| Input       | `<oc-input>`         | `<Input />`         | `input[ocInput]`       |
+| Label       | `<oc-label>`         | `<Label />`         | `label[ocLabel]`       |
+| Alert       | `<oc-alert>` + parts | `<Alert />` + parts | `div[ocAlert]` + parts |
+| Separator   | `<oc-separator>`     | `<Separator />`     | `div[ocSeparator]`     |
+| Skeleton    | `<oc-skeleton>`      | `<Skeleton />`      | `div[ocSkeleton]`      |
+| Sheet       | `<oc-sheet>` + parts | `<Sheet />` + parts | `oc-sheet`             |
+| Switch      | `<oc-switch>`        | `<Switch />`        | `button[ocSwitch]`     |
+| Progress    | `<oc-progress>`      | `<Progress />`      | `oc-progress`          |
+| Icon Button | `<oc-icon-button>`   | `<IconButton />`    | `button[ocIconButton]` |
+| Kbd         | `<oc-kbd>`           | `<Kbd />`           | `kbd[ocKbd]`           |
+| Text Link   | `<oc-link>`          | `<TextLink />`      | `a[ocTextLink]`        |
 
 ## Quick start
 
@@ -177,7 +183,7 @@ registry without any extra server.
 
 - Playwright visual regression and cross-framework e2e (M6)
 - Angular Vitest/AnalogJS unit-test harness
-- More primitives and overlays (dialog, dropdown, tabs, combobox, toast) using floating-ui in core
+- More primitives and overlays (dropdown menu, tabs, combobox, toast) using floating-ui in core
 - Prebuilt CSS bundle for npm consumers (registry installs are already self-contained)
 
 ## License
