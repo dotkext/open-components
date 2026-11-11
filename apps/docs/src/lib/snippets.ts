@@ -388,4 +388,186 @@ export function Example() {
   <oc-link href="/changelog" variant="muted">view the changelog</oc-link>.
 </p>`,
   },
+  collapsible: {
+    react: `import {
+  Collapsible, CollapsibleContent, CollapsibleTrigger,
+} from '@open-components/ui-react/collapsible';
+
+export function Example() {
+  return (
+    <Collapsible>
+      <CollapsibleTrigger>Connect a client</CollapsibleTrigger>
+      <CollapsibleContent className="text-muted-foreground mt-4 text-sm">
+        Once connected you can access everything available in the console.
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}`,
+    angular: `<div ocCollapsible>
+  <button ocCollapsibleTrigger>Connect a client</button>
+  <div ocCollapsibleContent class="text-muted-foreground mt-4 text-sm">
+    Once connected you can access everything available in the console.
+  </div>
+</div>`,
+    web: `<oc-collapsible>
+  <oc-collapsible-trigger>Connect a client</oc-collapsible-trigger>
+  <oc-collapsible-content class="text-muted-foreground mt-4 text-sm">
+    Once connected you can access everything available in the console.
+  </oc-collapsible-content>
+</oc-collapsible>`,
+  },
+  tabs: {
+    react: `import { Tabs, TabsContent, TabsList, TabsTrigger } from '@open-components/ui-react/tabs';
+
+export function Example() {
+  return (
+    <Tabs defaultValue="desktop">
+      <TabsList aria-label="Client">
+        <TabsTrigger value="desktop">Desktop</TabsTrigger>
+        <TabsTrigger value="terminal">Terminal</TabsTrigger>
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+      </TabsList>
+      <TabsContent value="desktop">Install the desktop app.</TabsContent>
+      <TabsContent value="terminal">Connect from your terminal.</TabsContent>
+      <TabsContent value="sdk">Create an API key.</TabsContent>
+    </Tabs>
+  );
+}`,
+    angular: `<div ocTabs [(value)]="client">
+  <div ocTabList aria-label="Client">
+    <button ocTab value="desktop">Desktop</button>
+    <button ocTab value="terminal">Terminal</button>
+    <button ocTab value="sdk">SDK</button>
+  </div>
+  <div ocTabPanel value="desktop">Install the desktop app.</div>
+  <div ocTabPanel value="terminal">Connect from your terminal.</div>
+  <div ocTabPanel value="sdk">Create an API key.</div>
+</div>`,
+    web: `<oc-tabs value="desktop">
+  <oc-tab-list aria-label="Client">
+    <oc-tab value="desktop">Desktop</oc-tab>
+    <oc-tab value="terminal">Terminal</oc-tab>
+    <oc-tab value="sdk">SDK</oc-tab>
+  </oc-tab-list>
+  <oc-tab-panel value="desktop">Install the desktop app.</oc-tab-panel>
+  <oc-tab-panel value="terminal">Connect from your terminal.</oc-tab-panel>
+  <oc-tab-panel value="sdk">Create an API key.</oc-tab-panel>
+</oc-tabs>`,
+  },
+  steps: {
+    react: `import { Step, StepDescription, StepTitle, Steps } from '@open-components/ui-react/steps';
+
+export function Example() {
+  return (
+    <Steps>
+      <Step state="complete" number={1}>
+        <StepTitle>Install the client</StepTitle>
+        <StepDescription>Skip this if you already have it.</StepDescription>
+      </Step>
+      <Step state="current" number={2}>
+        <StepTitle>Connect this workspace</StepTitle>
+        <StepDescription>Approve the sign-in in your browser.</StepDescription>
+      </Step>
+      <Step state="upcoming" number={3}>
+        <StepTitle>Choose a model</StepTitle>
+      </Step>
+    </Steps>
+  );
+}`,
+    angular: `<oc-steps>
+  <oc-step state="complete" [number]="1">
+    <div ocStepTitle>Install the client</div>
+    <div ocStepDescription>Skip this if you already have it.</div>
+  </oc-step>
+  <oc-step state="current" [number]="2">
+    <div ocStepTitle>Connect this workspace</div>
+    <div ocStepDescription>Approve the sign-in in your browser.</div>
+  </oc-step>
+  <oc-step state="upcoming" [number]="3">
+    <div ocStepTitle>Choose a model</div>
+  </oc-step>
+</oc-steps>`,
+    web: `<oc-steps>
+  <oc-step state="complete" number="1">
+    <oc-step-title>Install the client</oc-step-title>
+    <oc-step-description>Skip this if you already have it.</oc-step-description>
+  </oc-step>
+  <oc-step state="current" number="2">
+    <oc-step-title>Connect this workspace</oc-step-title>
+    <oc-step-description>Approve the sign-in in your browser.</oc-step-description>
+  </oc-step>
+  <oc-step state="upcoming" number="3">
+    <oc-step-title>Choose a model</oc-step-title>
+  </oc-step>
+</oc-steps>`,
+  },
+  'dropdown-menu': {
+    react: `import {
+  DropdownMenu, DropdownMenuContent, DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@open-components/ui-react/dropdown-menu';
+
+export function Example() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger>Other platforms</DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem onSelect={() => console.log('macOS')}>macOS</DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => console.log('Windows')}>Windows</DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => console.log('Linux')}>Linux</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}`,
+    angular: `<div ocDropdownMenu>
+  <button ocDropdownTrigger>Other platforms</button>
+  <div ocDropdownContent>
+    <button ocDropdownItem value="macos" (selected)="install('macos')">macOS</button>
+    <button ocDropdownItem value="windows" (selected)="install('windows')">Windows</button>
+    <button ocDropdownItem value="linux" (selected)="install('linux')">Linux</button>
+  </div>
+</div>`,
+    web: `<oc-dropdown-menu>
+  <oc-dropdown-trigger>Other platforms</oc-dropdown-trigger>
+  <oc-dropdown-content>
+    <oc-dropdown-item value="macos">macOS</oc-dropdown-item>
+    <oc-dropdown-item value="windows">Windows</oc-dropdown-item>
+    <oc-dropdown-item value="linux">Linux</oc-dropdown-item>
+  </oc-dropdown-content>
+</oc-dropdown-menu>`,
+  },
+  'segmented-control': {
+    react: `import {
+  SegmentedControl, SegmentedControlItem,
+} from '@open-components/ui-react/segmented-control';
+
+export function Example() {
+  return (
+    <SegmentedControl defaultValue="curl" aria-label="Language">
+      <SegmentedControlItem value="curl">cURL</SegmentedControlItem>
+      <SegmentedControlItem value="typescript">TypeScript</SegmentedControlItem>
+      <SegmentedControlItem value="python">Python</SegmentedControlItem>
+    </SegmentedControl>
+  );
+}`,
+    angular: `<div ocSegmentedControl [(value)]="language" aria-label="Language">
+  <button ocSegment value="curl">cURL</button>
+  <button ocSegment value="typescript">TypeScript</button>
+  <button ocSegment value="python">Python</button>
+</div>`,
+    web: `<oc-segmented-control value="curl" aria-label="Language">
+  <oc-segment value="curl">cURL</oc-segment>
+  <oc-segment value="typescript">TypeScript</oc-segment>
+  <oc-segment value="python">Python</oc-segment>
+</oc-segmented-control>`,
+  },
+  'code-block': {
+    react: `import { CodeBlock } from '@open-components/ui-react/code-block';
+
+export function Example() {
+  return <CodeBlock code="npm install -g @opencode/cli" />;
+}`,
+    angular: `<oc-code-block code="npm install -g @opencode/cli"></oc-code-block>`,
+    web: `<oc-code-block code="npm install -g @opencode/cli"></oc-code-block>`,
+  },
 };

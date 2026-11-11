@@ -21,6 +21,14 @@ export default defineConfig({
           replacement: r('../../packages/core/src/sheet/behavior.ts'),
         },
         {
+          find: '@open-components/core/tabs/behavior',
+          replacement: r('../../packages/core/src/tabs/behavior.ts'),
+        },
+        {
+          find: '@open-components/core/dropdown-menu/behavior',
+          replacement: r('../../packages/core/src/dropdown-menu/behavior.ts'),
+        },
+        {
           find: /^@open-components\/core\/(.*)$/,
           replacement: r('../../packages/core/src/$1/index.ts'),
         },

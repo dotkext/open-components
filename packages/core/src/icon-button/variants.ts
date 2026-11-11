@@ -6,6 +6,7 @@ export const iconButtonVariants = cva(
     variants: {
       variant: {
         ghost: 'hover:bg-accent hover:text-accent-foreground',
+        muted: 'text-muted-foreground hover:bg-accent hover:text-foreground',
         outline: 'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground',
         solid: 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
         secondary: 'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',

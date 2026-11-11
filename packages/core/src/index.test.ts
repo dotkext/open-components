@@ -3,15 +3,21 @@ import { alertVariants, alertDescriptionClass } from './alert/index';
 import { badgeVariants } from './badge/index';
 import { buttonVariants } from './button/index';
 import { cardClass } from './card/index';
+import { codeBlockClass } from './code-block/index';
+import { collapsibleContentClass } from './collapsible/index';
+import { dropdownContentClass } from './dropdown-menu/index';
 import { iconButtonVariants } from './icon-button/index';
 import { inputClass } from './input/index';
 import { kbdClass } from './kbd/index';
 import { labelClass } from './label/index';
 import { progressClass } from './progress/index';
+import { segmentedControlClass } from './segmented-control/index';
 import { separatorVariants } from './separator/index';
 import { sheetContentVariants } from './sheet/index';
 import { skeletonClass } from './skeleton/index';
+import { stepMarkerClass } from './steps/index';
 import { switchVariants } from './switch/index';
+import { tabsTriggerClass } from './tabs/index';
 import { textLinkVariants } from './text-link/index';
 
 describe('buttonVariants', () => {
@@ -86,5 +92,21 @@ describe('new primitives', () => {
     expect(kbdClass).toContain('font-mono');
     expect(textLinkVariants({ variant: 'muted' })).toContain('text-muted-foreground');
     expect(sheetContentVariants({ side: 'left' })).toContain('border-r');
+  });
+
+  it('icon button exposes the muted variant', () => {
+    expect(iconButtonVariants({ variant: 'muted' })).toContain('text-muted-foreground');
+  });
+
+  it('tabs, collapsible and steps classes are defined', () => {
+    expect(tabsTriggerClass).toContain('data-[state=active]');
+    expect(collapsibleContentClass).toContain('overflow-hidden');
+    expect(stepMarkerClass).toContain('data-[state=complete]');
+  });
+
+  it('dropdown, segmented control and code block classes are defined', () => {
+    expect(dropdownContentClass).toContain('absolute');
+    expect(segmentedControlClass).toContain('bg-muted');
+    expect(codeBlockClass).toContain('rounded-lg');
   });
 });

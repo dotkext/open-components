@@ -11,11 +11,22 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  CodeBlock,
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
   IconButton,
   Input,
   Kbd,
   Label,
   Progress,
+  SegmentedControl,
+  SegmentedControlItem,
   Separator,
   Sheet,
   SheetContent,
@@ -24,7 +35,15 @@ import {
   SheetHeader,
   SheetTitle,
   Skeleton,
+  Step,
+  StepDescription,
+  StepTitle,
+  Steps,
   Switch,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
   TextLink,
 } from '@open-components/ui-react';
 
@@ -307,6 +326,107 @@ function TextLinkDemo() {
   );
 }
 
+function CollapsibleDemo() {
+  return (
+    <div className="w-full max-w-md rounded-xl border p-4">
+      <Collapsible defaultOpen>
+        <CollapsibleTrigger>
+          <span className="font-medium">Connect a client</span>
+          <span className="text-muted-foreground ml-auto text-sm">Toggle</span>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="text-muted-foreground mt-4 text-sm">
+          Once connected you can access everything available in the console.
+        </CollapsibleContent>
+      </Collapsible>
+    </div>
+  );
+}
+
+function TabsDemo() {
+  return (
+    <Tabs defaultValue="desktop" className="w-full max-w-md">
+      <TabsList aria-label="Client">
+        <TabsTrigger value="desktop">Desktop</TabsTrigger>
+        <TabsTrigger value="terminal">Terminal</TabsTrigger>
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+      </TabsList>
+      <TabsContent value="desktop" className="text-muted-foreground text-sm">
+        Install the desktop app and connect this workspace.
+      </TabsContent>
+      <TabsContent value="terminal" className="text-muted-foreground text-sm">
+        Run the CLI and connect from your terminal.
+      </TabsContent>
+      <TabsContent value="sdk" className="text-muted-foreground text-sm">
+        Create an API key and make your first request.
+      </TabsContent>
+    </Tabs>
+  );
+}
+
+function StepsDemo() {
+  return (
+    <Steps className="w-full max-w-md">
+      <Step state="complete" number={1}>
+        <StepTitle>Install the client</StepTitle>
+        <StepDescription>Skip this if you already have it.</StepDescription>
+      </Step>
+      <Step state="current" number={2}>
+        <StepTitle>Connect this workspace</StepTitle>
+        <StepDescription>Approve the sign-in in your browser.</StepDescription>
+      </Step>
+      <Step state="upcoming" number={3}>
+        <StepTitle>Choose a model</StepTitle>
+        <StepDescription>Pick a model from the selector.</StepDescription>
+      </Step>
+    </Steps>
+  );
+}
+
+function DropdownMenuDemo() {
+  const [platform, setPlatform] = useState('Other platforms');
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger className="rounded-md border px-3 py-1.5">
+        {platform}
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        {['macOS', 'Windows', 'Linux'].map((name) => (
+          <DropdownMenuItem key={name} onSelect={() => setPlatform(name)}>
+            {name}
+          </DropdownMenuItem>
+        ))}
+        <DropdownMenuSeparator />
+        <DropdownMenuItem disabled>AppImage</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
+function SegmentedControlDemo() {
+  const [language, setLanguage] = useState('curl');
+  const snippets: Record<string, string> = {
+    curl: 'curl https://api.example.com/v1/models',
+    typescript: 'await client.models.list()',
+    python: 'client.models.list()',
+  };
+
+  return (
+    <div className="flex w-full max-w-md flex-col gap-3">
+      <SegmentedControl value={language} onValueChange={setLanguage} aria-label="Language">
+        <SegmentedControlItem value="curl">cURL</SegmentedControlItem>
+        <SegmentedControlItem value="typescript">TypeScript</SegmentedControlItem>
+        <SegmentedControlItem value="python">Python</SegmentedControlItem>
+      </SegmentedControl>
+      <CodeBlock code={snippets[language] ?? ''} />
+    </div>
+  );
+}
+
+function CodeBlockDemo() {
+  return <CodeBlock code="npm install -g @opencode/cli" className="w-full max-w-md" />;
+}
+
 const demos: Record<string, ComponentType> = {
   button: ButtonDemo,
   badge: BadgeDemo,
@@ -322,6 +442,12 @@ const demos: Record<string, ComponentType> = {
   'icon-button': IconButtonDemo,
   kbd: KbdDemo,
   'text-link': TextLinkDemo,
+  collapsible: CollapsibleDemo,
+  tabs: TabsDemo,
+  steps: StepsDemo,
+  'dropdown-menu': DropdownMenuDemo,
+  'segmented-control': SegmentedControlDemo,
+  'code-block': CodeBlockDemo,
 };
 
 export default function Showcase({ name }: { name: string }) {

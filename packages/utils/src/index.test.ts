@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cn } from './index';
+import { cn, copyText } from './index';
 
 describe('cn', () => {
   it('joins class names', () => {
@@ -18,5 +18,11 @@ describe('cn', () => {
 
   it('supports conditional object syntax', () => {
     expect(cn({ 'text-sm': true, 'text-lg': false })).toBe('text-sm');
+  });
+});
+
+describe('copyText', () => {
+  it('returns false when the clipboard API is unavailable', async () => {
+    await expect(copyText('hello')).resolves.toBe(false);
   });
 });

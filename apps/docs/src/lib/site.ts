@@ -264,6 +264,115 @@ export const components: ComponentDoc[] = [
       </p>
     `,
   },
+  {
+    slug: 'collapsible',
+    title: 'Collapsible',
+    description: 'A disclosure region that expands and collapses its content.',
+    category: 'Layout',
+    webPreview: `
+      <oc-collapsible open class="w-full max-w-md rounded-xl border p-4">
+        <oc-collapsible-trigger>
+          <span class="font-medium">Connect a client</span>
+          <span class="text-muted-foreground ml-auto text-sm">Toggle</span>
+        </oc-collapsible-trigger>
+        <oc-collapsible-content class="text-muted-foreground mt-4 text-sm">
+          Once connected you can access everything available in the console.
+        </oc-collapsible-content>
+      </oc-collapsible>
+    `,
+  },
+  {
+    slug: 'tabs',
+    title: 'Tabs',
+    description: 'Layered panels that reveal one section at a time.',
+    category: 'Layout',
+    webPreview: `
+      <oc-tabs value="desktop" class="w-full">
+        <oc-tab-list aria-label="Client">
+          <oc-tab value="desktop">Desktop</oc-tab>
+          <oc-tab value="terminal">Terminal</oc-tab>
+          <oc-tab value="sdk">SDK</oc-tab>
+        </oc-tab-list>
+        <oc-tab-panel value="desktop" class="text-muted-foreground text-sm">
+          Install the desktop app and connect this workspace.
+        </oc-tab-panel>
+        <oc-tab-panel value="terminal" class="text-muted-foreground text-sm">
+          Run the CLI and connect from your terminal.
+        </oc-tab-panel>
+        <oc-tab-panel value="sdk" class="text-muted-foreground text-sm">
+          Create an API key and make your first request.
+        </oc-tab-panel>
+      </oc-tabs>
+    `,
+  },
+  {
+    slug: 'steps',
+    title: 'Steps',
+    description: 'A vertical sequence of steps with completion states.',
+    category: 'Display',
+    webPreview: `
+      <oc-steps class="w-full max-w-md">
+        <oc-step state="complete" number="1">
+          <oc-step-title>Install the client</oc-step-title>
+          <oc-step-description>Skip this if you already have it.</oc-step-description>
+        </oc-step>
+        <oc-step state="current" number="2">
+          <oc-step-title>Connect this workspace</oc-step-title>
+          <oc-step-description>Approve the sign-in in your browser.</oc-step-description>
+        </oc-step>
+        <oc-step state="upcoming" number="3">
+          <oc-step-title>Choose a model</oc-step-title>
+          <oc-step-description>Pick a model from the selector.</oc-step-description>
+        </oc-step>
+      </oc-steps>
+    `,
+  },
+  {
+    slug: 'dropdown-menu',
+    title: 'Dropdown Menu',
+    description: 'A floating menu of actions or options.',
+    category: 'Display',
+    webPreview: `
+      <oc-dropdown-menu>
+        <oc-dropdown-trigger>Other platforms</oc-dropdown-trigger>
+        <oc-dropdown-content>
+          <oc-dropdown-label>Installers</oc-dropdown-label>
+          <oc-dropdown-item value="macos">macOS</oc-dropdown-item>
+          <oc-dropdown-item value="windows">Windows</oc-dropdown-item>
+          <oc-dropdown-separator></oc-dropdown-separator>
+          <oc-dropdown-item value="linux">Linux</oc-dropdown-item>
+        </oc-dropdown-content>
+      </oc-dropdown-menu>
+    `,
+  },
+  {
+    slug: 'segmented-control',
+    title: 'Segmented Control',
+    description: 'A compact set of mutually exclusive options.',
+    category: 'Forms',
+    webPreview: `
+      <div class="flex flex-col items-center gap-4">
+        <oc-segmented-control value="curl" aria-label="Language">
+          <oc-segment value="curl">cURL</oc-segment>
+          <oc-segment value="typescript">TypeScript</oc-segment>
+          <oc-segment value="python">Python</oc-segment>
+        </oc-segmented-control>
+        <p class="text-muted-foreground text-sm">Selected: cURL</p>
+      </div>
+    `,
+  },
+  {
+    slug: 'code-block',
+    title: 'Code Block',
+    description: 'A code snippet with a copy action.',
+    category: 'Display',
+    webPreview: `
+      <oc-code-block
+        code="npm install -g @opencode/cli"
+        class="w-full max-w-md"
+      ></oc-code-block>
+    `,
+  },
 ];
 
 export const componentBySlug = Object.fromEntries(

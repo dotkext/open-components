@@ -29,6 +29,22 @@
       "types": "./dist/card/index.d.ts",
       "import": "./dist/card/index.js"
     },
+    "./code-block": {
+      "types": "./dist/code-block/index.d.ts",
+      "import": "./dist/code-block/index.js"
+    },
+    "./collapsible": {
+      "types": "./dist/collapsible/index.d.ts",
+      "import": "./dist/collapsible/index.js"
+    },
+    "./dropdown-menu": {
+      "types": "./dist/dropdown-menu/index.d.ts",
+      "import": "./dist/dropdown-menu/index.js"
+    },
+    "./dropdown-menu/behavior": {
+      "types": "./dist/dropdown-menu/behavior.d.ts",
+      "import": "./dist/dropdown-menu/behavior.js"
+    },
     "./icon-button": {
       "types": "./dist/icon-button/index.d.ts",
       "import": "./dist/icon-button/index.js"
@@ -49,6 +65,10 @@
       "types": "./dist/progress/index.d.ts",
       "import": "./dist/progress/index.js"
     },
+    "./segmented-control": {
+      "types": "./dist/segmented-control/index.d.ts",
+      "import": "./dist/segmented-control/index.js"
+    },
     "./separator": {
       "types": "./dist/separator/index.d.ts",
       "import": "./dist/separator/index.js"
@@ -65,9 +85,21 @@
       "types": "./dist/skeleton/index.d.ts",
       "import": "./dist/skeleton/index.js"
     },
+    "./steps": {
+      "types": "./dist/steps/index.d.ts",
+      "import": "./dist/steps/index.js"
+    },
     "./switch": {
       "types": "./dist/switch/index.d.ts",
       "import": "./dist/switch/index.js"
+    },
+    "./tabs": {
+      "types": "./dist/tabs/index.d.ts",
+      "import": "./dist/tabs/index.js"
+    },
+    "./tabs/behavior": {
+      "types": "./dist/tabs/behavior.d.ts",
+      "import": "./dist/tabs/behavior.js"
     },
     "./text-link": {
       "types": "./dist/text-link/index.d.ts",

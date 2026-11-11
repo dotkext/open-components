@@ -123,6 +123,70 @@ export const components = [
     variants: 'core/src/text-link/variants.ts',
     dependencies: ['class-variance-authority'],
   },
+  {
+    name: 'collapsible',
+    title: 'Collapsible',
+    description: 'A disclosure region that expands and collapses its content.',
+    react: 'ui-react/src/collapsible/collapsible.tsx',
+    variants: 'core/src/collapsible/classes.ts',
+    dependencies: [],
+  },
+  {
+    name: 'tabs',
+    title: 'Tabs',
+    description: 'Layered panels that reveal one section at a time.',
+    react: 'ui-react/src/tabs/tabs.tsx',
+    variants: 'core/src/tabs/classes.ts',
+    dependencies: [],
+    extraFiles: [
+      {
+        specifier: '@open-components/core/tabs/behavior',
+        source: 'core/src/tabs/behavior.ts',
+        target: 'components/ui/tabs-behavior.ts',
+        importPath: './tabs-behavior',
+      },
+    ],
+  },
+  {
+    name: 'steps',
+    title: 'Steps',
+    description: 'A vertical sequence of steps with completion states.',
+    react: 'ui-react/src/steps/steps.tsx',
+    variants: 'core/src/steps/classes.ts',
+    dependencies: [],
+  },
+  {
+    name: 'dropdown-menu',
+    title: 'Dropdown Menu',
+    description: 'A floating menu of actions or options.',
+    react: 'ui-react/src/dropdown-menu/dropdown-menu.tsx',
+    variants: 'core/src/dropdown-menu/classes.ts',
+    dependencies: [],
+    extraFiles: [
+      {
+        specifier: '@open-components/core/dropdown-menu/behavior',
+        source: 'core/src/dropdown-menu/behavior.ts',
+        target: 'components/ui/dropdown-menu-behavior.ts',
+        importPath: './dropdown-menu-behavior',
+      },
+    ],
+  },
+  {
+    name: 'segmented-control',
+    title: 'Segmented Control',
+    description: 'A compact set of mutually exclusive options.',
+    react: 'ui-react/src/segmented-control/segmented-control.tsx',
+    variants: 'core/src/segmented-control/classes.ts',
+    dependencies: [],
+  },
+  {
+    name: 'code-block',
+    title: 'Code Block',
+    description: 'A code snippet with a copy action.',
+    react: 'ui-react/src/code-block/code-block.tsx',
+    variants: 'core/src/code-block/classes.ts',
+    dependencies: [],
+  },
 ];
 
 export const registryName = 'open-components';

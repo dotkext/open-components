@@ -11,11 +11,21 @@ import {
   OcCardFooter,
   OcCardHeader,
   OcCardTitle,
+  OcCodeBlock,
+  OcCollapsible,
+  OcCollapsibleContent,
+  OcCollapsibleTrigger,
+  OcDropdownContent,
+  OcDropdownItem,
+  OcDropdownMenu,
+  OcDropdownTrigger,
   OcIconButton,
   OcInput,
   OcKbd,
   OcLabel,
   OcProgress,
+  OcSegment,
+  OcSegmentedControl,
   OcSeparator,
   OcSheet,
   OcSheetClose,
@@ -24,7 +34,15 @@ import {
   OcSheetHeader,
   OcSheetTitle,
   OcSkeleton,
+  OcStep,
+  OcStepDescription,
+  OcSteps,
+  OcStepTitle,
   OcSwitch,
+  OcTab,
+  OcTabList,
+  OcTabPanel,
+  OcTabs,
   OcTextLink,
 } from '@open-components/ui-angular';
 
@@ -42,11 +60,21 @@ import {
     OcCardFooter,
     OcCardHeader,
     OcCardTitle,
+    OcCodeBlock,
+    OcCollapsible,
+    OcCollapsibleContent,
+    OcCollapsibleTrigger,
+    OcDropdownContent,
+    OcDropdownItem,
+    OcDropdownMenu,
+    OcDropdownTrigger,
     OcIconButton,
     OcInput,
     OcKbd,
     OcLabel,
     OcProgress,
+    OcSegment,
+    OcSegmentedControl,
     OcSeparator,
     OcSheet,
     OcSheetClose,
@@ -55,7 +83,15 @@ import {
     OcSheetHeader,
     OcSheetTitle,
     OcSkeleton,
+    OcStep,
+    OcStepDescription,
+    OcSteps,
+    OcStepTitle,
     OcSwitch,
+    OcTab,
+    OcTabList,
+    OcTabPanel,
+    OcTabs,
     OcTextLink,
   ],
   template: `
@@ -216,6 +252,95 @@ import {
           </div>
         </oc-sheet>
       </section>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Collapsible</h2>
+        <div class="rounded-xl border p-6">
+          <div ocCollapsible>
+            <button ocCollapsibleTrigger>
+              <span class="font-medium">Connect a client</span>
+              <span class="text-muted-foreground ml-auto text-sm">Toggle</span>
+            </button>
+            <div ocCollapsibleContent class="text-muted-foreground mt-4 text-sm">
+              Once connected you can access everything available in the console.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Tabs</h2>
+        <div class="rounded-xl border p-6">
+          <div ocTabs [(value)]="clientTab">
+            <div ocTabList aria-label="Client">
+              <button ocTab value="desktop">Desktop</button>
+              <button ocTab value="terminal">Terminal</button>
+              <button ocTab value="sdk">SDK</button>
+            </div>
+            <div ocTabPanel value="desktop" class="text-muted-foreground text-sm">
+              Install the desktop app and connect this workspace.
+            </div>
+            <div ocTabPanel value="terminal" class="text-muted-foreground text-sm">
+              Run the CLI and connect from your terminal.
+            </div>
+            <div ocTabPanel value="sdk" class="text-muted-foreground text-sm">
+              Create an API key and make your first request.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Steps</h2>
+        <div class="rounded-xl border p-6">
+          <oc-steps>
+            <oc-step state="complete" [number]="1">
+              <div ocStepTitle>Install the client</div>
+              <div ocStepDescription>Skip this if you already have it.</div>
+            </oc-step>
+            <oc-step state="current" [number]="2">
+              <div ocStepTitle>Connect this workspace</div>
+              <div ocStepDescription>Approve the sign-in in your browser.</div>
+            </oc-step>
+            <oc-step state="upcoming" [number]="3">
+              <div ocStepTitle>Choose a model</div>
+            </oc-step>
+          </oc-steps>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Dropdown Menu</h2>
+        <div class="flex items-start gap-3 rounded-xl border p-6">
+          <div ocDropdownMenu>
+            <button ocDropdownTrigger>Other platforms</button>
+            <div ocDropdownContent>
+              <button ocDropdownItem value="macos">macOS</button>
+              <button ocDropdownItem value="windows">Windows</button>
+              <button ocDropdownItem value="linux">Linux</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Segmented Control</h2>
+        <div class="flex flex-col gap-3 rounded-xl border p-6">
+          <div ocSegmentedControl [(value)]="language" aria-label="Language">
+            <button ocSegment value="curl">cURL</button>
+            <button ocSegment value="typescript">TypeScript</button>
+            <button ocSegment value="python">Python</button>
+          </div>
+          <oc-code-block code="curl https://api.example.com/v1/models"></oc-code-block>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h2 class="text-lg font-semibold tracking-tight">Code Block</h2>
+        <div class="rounded-xl border p-6">
+          <oc-code-block code="npm install -g @opencode/cli"></oc-code-block>
+        </div>
+      </section>
     </main>
   `,
 })
@@ -223,6 +348,8 @@ export class AppComponent {
   protected dark = false;
   protected readonly notifications = signal(true);
   protected readonly sheetOpen = signal(false);
+  protected readonly clientTab = signal('desktop');
+  protected readonly language = signal('curl');
 
   protected toggleTheme(): void {
     this.dark = !this.dark;

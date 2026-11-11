@@ -11,11 +11,21 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  CodeBlock,
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
   IconButton,
   Input,
   Kbd,
   Label,
   Progress,
+  SegmentedControl,
+  SegmentedControlItem,
   Separator,
   Sheet,
   SheetContent,
@@ -24,7 +34,15 @@ import {
   SheetHeader,
   SheetTitle,
   Skeleton,
+  Step,
+  StepDescription,
+  StepTitle,
+  Steps,
   Switch,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
   TextLink,
 } from '@open-components/ui-react';
 
@@ -40,6 +58,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 export default function App() {
   const [dark, setDark] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [language, setLanguage] = useState('curl');
 
   const toggleDark = () => {
     const next = !dark;
@@ -193,6 +212,88 @@ export default function App() {
             </SheetFooter>
           </SheetContent>
         </Sheet>
+      </Section>
+
+      <Section title="Collapsible">
+        <div className="w-full max-w-md rounded-xl border p-4">
+          <Collapsible defaultOpen>
+            <CollapsibleTrigger>
+              <span className="font-medium">Connect a client</span>
+              <span className="text-muted-foreground ml-auto text-sm">Toggle</span>
+            </CollapsibleTrigger>
+            <CollapsibleContent className="text-muted-foreground mt-4 text-sm">
+              Once connected you can access everything available in the console.
+            </CollapsibleContent>
+          </Collapsible>
+        </div>
+      </Section>
+
+      <Section title="Tabs">
+        <Tabs defaultValue="desktop" className="w-full max-w-md">
+          <TabsList aria-label="Client">
+            <TabsTrigger value="desktop">Desktop</TabsTrigger>
+            <TabsTrigger value="terminal">Terminal</TabsTrigger>
+            <TabsTrigger value="sdk">SDK</TabsTrigger>
+          </TabsList>
+          <TabsContent value="desktop" className="text-muted-foreground text-sm">
+            Install the desktop app and connect this workspace.
+          </TabsContent>
+          <TabsContent value="terminal" className="text-muted-foreground text-sm">
+            Run the CLI and connect from your terminal.
+          </TabsContent>
+          <TabsContent value="sdk" className="text-muted-foreground text-sm">
+            Create an API key and make your first request.
+          </TabsContent>
+        </Tabs>
+      </Section>
+
+      <Section title="Steps">
+        <Steps className="w-full max-w-md">
+          <Step state="complete" number={1}>
+            <StepTitle>Install the client</StepTitle>
+            <StepDescription>Skip this if you already have it.</StepDescription>
+          </Step>
+          <Step state="current" number={2}>
+            <StepTitle>Connect this workspace</StepTitle>
+            <StepDescription>Approve the sign-in in your browser.</StepDescription>
+          </Step>
+          <Step state="upcoming" number={3}>
+            <StepTitle>Choose a model</StepTitle>
+          </Step>
+        </Steps>
+      </Section>
+
+      <Section title="Dropdown Menu">
+        <DropdownMenu>
+          <DropdownMenuTrigger>Other platforms</DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem>macOS</DropdownMenuItem>
+            <DropdownMenuItem>Windows</DropdownMenuItem>
+            <DropdownMenuItem>Linux</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </Section>
+
+      <Section title="Segmented Control">
+        <SegmentedControl value={language} onValueChange={setLanguage} aria-label="Language">
+          <SegmentedControlItem value="curl">cURL</SegmentedControlItem>
+          <SegmentedControlItem value="typescript">TypeScript</SegmentedControlItem>
+          <SegmentedControlItem value="python">Python</SegmentedControlItem>
+        </SegmentedControl>
+        <CodeBlock
+          code={
+            language === 'curl'
+              ? 'curl https://api.example.com/v1/models'
+              : language === 'typescript'
+                ? 'await client.models.list()'
+                : 'client.models.list()'
+          }
+          className="w-full max-w-md"
+        />
+      </Section>
+
+      <Section title="Code Block">
+        <CodeBlock code="npm install -g @opencode/cli" className="w-full max-w-md" />
       </Section>
     </main>
   );
