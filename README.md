@@ -181,7 +181,11 @@ definition-of-done.
 ## Deployment
 
 The docs site is a fully static Astro build. `.github/workflows/deploy-docs.yml` publishes
-`apps/docs/dist` to GitHub Pages under `/<repo>/` (set `DOCS_BASE` to customize). The generated
+`apps/docs/dist` to GitHub Pages. The workflow uses `actions/configure-pages` to detect the Pages
+origin and base path automatically (project pages use `/<repo>/`, custom domains use `/`) and
+passes them to Astro as `SITE_URL` / `DOCS_BASE`, so internal links and assets work in both cases.
+It attempts to enable Pages with the `GitHub Actions` source; if that is not permitted, enable it
+once under **Settings → Pages → Build and deployment → Source: GitHub Actions**. The generated
 `registry.json` and `r/*.json` are served from the same origin, so the shadcn CLI can consume the
 registry without any extra server.
 

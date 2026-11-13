@@ -6,10 +6,13 @@ import tailwindcss from '@tailwindcss/vite';
 const r = (path) => fileURLToPath(new URL(path, import.meta.url));
 
 // GitHub Pages serves the site under /<repo>/ unless a custom domain is used.
-const base = process.env.DOCS_BASE ?? '/';
+// The deploy workflow passes the detected base path and origin via DOCS_BASE / SITE_URL.
+const rawBase = process.env.DOCS_BASE ?? '/';
+const normalizedBase = rawBase.startsWith('/') ? rawBase : `/${rawBase}`;
+const base = normalizedBase.endsWith('/') ? normalizedBase : `${normalizedBase}/`;
 
 export default defineConfig({
-  site: 'https://open-components.github.io',
+  site: process.env.SITE_URL ?? 'https://dotkext.github.io',
   base,
   integrations: [react()],
   vite: {
