@@ -189,6 +189,20 @@ once under **Settings → Pages → Build and deployment → Source: GitHub Acti
 `registry.json` and `r/*.json` are served from the same origin, so the shadcn CLI can consume the
 registry without any extra server.
 
+## Releases
+
+Changesets drive versioning and publishing. A push to `main` makes `.github/workflows/release.yml`
+create or update a `changeset-release/main` pull request; merging that PR publishes the packages to
+npm and creates the release tags.
+
+One-time setup:
+
+1. Add an `NPM_TOKEN` repository secret (npm automation token with publish access).
+2. Allow the workflow to open the version PR, using **either**:
+   - **Settings → Actions → General → Allow GitHub Actions to create and approve pull requests**, or
+   - a `RELEASE_TOKEN` repository secret (classic PAT with `repo` and `workflow` scopes). The
+     workflow prefers `RELEASE_TOKEN` when it is set and falls back to `GITHUB_TOKEN`.
+
 ## Roadmap
 
 - Playwright visual regression and cross-framework e2e (M6)
