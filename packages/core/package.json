@@ -1,6 +1,6 @@
 {
   "name": "@open-components/core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Headless component logic and shared CVA variant definitions for OpenComponents.",
   "license": "MIT",
   "type": "module",

@@ -1,6 +1,6 @@
 {
   "name": "@open-components/utils",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Framework-agnostic utilities shared by all OpenComponents renderers: cn(), cva re-exports.",
   "license": "MIT",
   "type": "module",

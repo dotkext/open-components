@@ -1,6 +1,6 @@
 {
   "name": "@open-components/ui-web",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "OpenComponents Web Components (Lit) — light DOM, Tailwind-friendly custom elements.",
   "license": "MIT",
   "type": "module",
